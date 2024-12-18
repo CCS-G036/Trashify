@@ -75,7 +75,7 @@ git clone https://github.com/CCS-G036/Trashify.git
 - Go to the directory
 
 ```bash
-cd ai-waste-man-rec
+cd Trashify
 ```
 
 - Install with npm
