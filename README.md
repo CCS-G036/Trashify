@@ -69,7 +69,7 @@ DB_NAME=your_database_name
 - Clone the repo
 
 ```bash
-git clone https://github.com/CCS-G036/ai-waste-man-rec/.git
+git clone https://github.com/CCS-G036/Trashify.git
 ```
 
 - Go to the directory
