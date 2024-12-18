@@ -1,0 +1,35 @@
+{
+  "name": "trashify",
+  "version": "1.0.0",
+  "description": "This system is designed to simplify and optimize the management of a waste bank by handling tasks like transaction recording, member management, and operational tracking. It aims to reduce administrative burden, improve efficiency, and ensure organized processes. Inspired by my mother’s dedication to managing a waste bank, the system supports administrators in promoting sustainable waste management practices effectively and effortlessly.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CCS-G036/ai-waste-man-rec.git"
+  },
+  "keywords": [
+    "trashify"
+  ],
+  "author": "Siddharth Bej",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CCS-G036/ai-waste-man-rec/issues"
+  },
+  "homepage": "https://github.com/CCS-G036/ai-waste-man-rec/#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.4.0",
+    "path": "^0.12.7"
+  }
+}
