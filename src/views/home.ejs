@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <script src="//code.tidio.co/weu2rcgzs414ansc0uyynpscap5d0ank.js" async></script>
+    <script>
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <%- include('./component/sidebar.ejs') %>
+    <%#- include('./component/chatbot.ejs') %>
+    <main class="content">
+        <%- include('./component/header.ejs') %>
+        <div onclick="toggleSidebarClose()">
+            <h1 id="scroll-home">About these Activities</h1>
+            <section class="about">
+                <section class="about-container">
+                    <p>These activities focus on recycling waste that retains economic value or can be transformed into
+                        products for resale or reuse.
+                        <br><br>
+                        By doing so, they help reduce environmental pollution, conserve natural resources, and promote
+                        the principles of a circular economy, turning waste into opportunities for sustainability and
+                        growth.
+                    </p>
+                    <div class="illustration">
+                        <img src="./img/asset-1.png" alt="Recycling">
+                    </div>
+                </section>
+            </section>
+            <section class="benefits">
+                <section class="benefits-container">
+                    <div class="illustration">
+                        <img src="./img/asset-2.png" alt="Recycling Benefits">
+                    </div>
+                    <p>Through recycling, we can minimize the harmful effects of waste on the environment while
+                        transforming what was once deemed worthless into valuable resources.
+                        <br><br>
+                        This approach nurtures a culture of sustainability and responsibility, inspiring individuals and
+                        businesses to embrace eco-friendly practices and actively participate in building a healthier,
+                        more sustainable planet.
+                    </p>
+                </section>
+            </section>
+
+            <h1>Why we made this?</h1>
+            <section class="about">
+                <section class="about-container">
+                    <p>
+                        By adopting a waste bank management system, we can streamline the use of resources such as
+                        manpower, materials, and finances, making waste management processes more efficient and
+                        effective.
+                        <br><br>
+                        This system facilitates the organized collection, sorting, and recycling of waste materials,
+                        ensuring that recyclable items are properly processed and reintegrated into the production
+                        cycle, fostering sustainability and reducing environmental impact.
+
+                    </p>
+                    <div class="illustration">
+                        <img src="./img/asset-3.png" alt="Recycling">
+                    </div>
+                </section>
+            </section>
+            <section class="benefits">
+                <section class="benefits-container">
+                    <div class="illustration">
+                        <img src="./img/asset-4.png" alt="Recycling Benefits">
+                    </div>
+                    <p>
+                        The system should effectively and accurately track and report key data related to waste bank
+                        activities, including the number of deposits, types of waste, total quantities, and more.
+                        <br><br>
+                        Furthermore, it enables enhanced tracking and monitoring of waste generation and disposal
+                        patterns, helping to pinpoint opportunities for waste reduction and optimize resource
+                        utilization for a more sustainable approach.
+                    </p>
+                </section>
+            </section>
+            <section class="about">
+                <section class="about-container">
+                    <p>
+                        Implementing a management system allows us to gather and analyze valuable data on waste
+                        generation, recycling rates, and community participation. This insight empowers us to make
+                        informed decisions and continuously refine our waste management strategies.
+                        <br><br>
+                        By leveraging a data-driven approach, we can maximize resource efficiency, minimize waste, and
+                        significantly contribute to long-term environmental sustainability.
+                    </p>
+                    <div class="illustration">
+                        <img src="./img/asset-5.png" alt="Recycling">
+                    </div>
+                </section>
+            </section>
+
+            <h1 id="scroll-data-summary">Data Summary (<%= data.dataHome.currentYear %>)</h1>
+            <section class="counter-container">
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-7.png">
+                        <span class="number">
+                                    <%= data.dataHome.countCustomer %>
+                                </span>
+                        <span class="notes">Total <br> Customers</span>
+                    </div>
+                    <p>
+                        Many customers are already connected to this management system.
+                    </p>
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-6.png">
+
+                        <span class="number-deposit">
+                                    <%= data.dataHome.totalDeposit %>
+                                </span>
+                        <span class="notes"> Amount <br> Deposit</span>
+
+                    </div>
+                    <p>
+                        The total deposits from all active customers.
+                    </p>
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-8.png">
+
+                        <span class="number">
+                                    <%= data.dataHome.countWasteType %>
+                                </span>
+                        <span class="notes">Total <br> Waste Types</span>
+
+                    </div>
+                    <p>
+                        The types of waste that can be recycled are currently based from Collectors.
+                    </p>
+                </div>
+            </section>
+
+            <h1 id="scroll-customer">Customer</h1>
+            <section class="chart">
+                <div class="chart-container">
+                    <div class="chart-customer">
+                        <canvas id="lineChartCustomer"></canvas>
+                    </div>
+                </div>
+                <p>
+                    We can analyze the participation trend of customers each month,
+                    this is for reviewing customer engagement and evaluating the effectiveness of the Waste Bank
+                    program.
+                </p>
+            </section>
+
+            <h1 id="scroll-deposit">Total Deposit</h1>
+            <section class="chart">
+                <div class="chart-container">
+                    <div class="chart-deposit">
+                        <canvas id="lineChartDeposit"></canvas>
+                    </div>
+                </div>
+                <p>
+                    Analyzing the growth of each customer's deposit amount during
+                    deposit activities allows us to review the data until the withdrawal time at the end of the year.
+                </p>
+            </section>
+
+            <h1 id="scroll-waste-type">Waste Type</h1>
+            <section class="waste-type">
+                <section class="waste-type-container">
+                    <table class="waste-type-table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price per-Kg</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% data.dataHome.rawDataWasteType.forEach(function(wt) { %>
+                            <tr>
+                                <td>
+                                    <%= wt.name.split(' ').map(data => data[0].toUpperCase() + data.slice(1)).join(' ') %>
+                                </td>
+                                <td>
+                                    <%= new Intl.NumberFormat('en-IN', {
+                                        style: 'currency',
+                                        currency: 'INR'
+                                    }).format(wt.price).replace("₹", "₹ ") %>
+                                </td>
+                            </tr>
+                        <% }); %>
+                        </tbody>
+                    </table>
+                </section>
+                <div>
+                    <canvas id="lineChartWasteType"></canvas>
+                </div>
+                <p>
+                    It can be used to analyze the most common types of waste generated based on each customer's place of
+                    residence, while still receiving benefits for making deposits.
+                </p>
+            </section>
+
+            <h1 id="scroll-faq">Frequently Asked Questions</h1>
+            <section class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What features are available in this project?</div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li>
+                                <span>Customer & Transaction Management:</span>
+                                Manage customer profiles, waste types, deposit balances, and withdrawal records.
+                            </li>
+                            <li>
+                                <span>Waste Monitoring & Reward System:</span>
+                                Track waste types being deposited and display associated prices or rewards.
+                            </li>
+                            <li>
+                                <span>Performance Insights:</span>
+                                Analyze data to uncover trends, evaluate performance, and monitor activity
+                                effectiveness.
+                            </li>
+                            <li>
+                                <span>Data Protection & Privacy:</span>
+                                Encrypt customer data and implement strict access controls to ensure data security.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Will the deposit balance be credited to the customer's account?</div>
+                    <div class="faq-answer">
+                        Absolutely, the deposit balance can be withdrawn and credited to each customer’s account.
+                        Deposit balances accumulate over a 12-month period, and at the end of the final month,
+                        management will initiate the withdrawal process for all active customers.
+
+                        <br><br>
+                        Both deposit and withdrawal data are fully transparent, allowing all customers to view their
+                        transaction history.
+
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How is customer data security ensured in this Management System?</div>
+                    <div class="faq-answer">
+                        Our system incorporates robust security features, including data encryption, user access
+                        controls, and audit trails, to safeguard customers' personal information from unauthorized
+                        access and ensure data integrity.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is the system continuously evolving with new feature developments, and are
+                        user ideas welcomed?
+                    </div>
+                    <div class="faq-answer">
+                        Features will evolve based on feedback from key stakeholders, including management and
+                        customers.
+                        <br><br>
+                        Here’s an improved version of your text:
+
+                        Features will evolve based on feedback from key stakeholders, including management and
+                        customers.
+
+                        We are always open to new ideas and innovations to ensure the continued success and
+                        sustainability of the waste bank initiative.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the level of interest in this waste bank project?</div>
+                    <div class="faq-answer">
+                        If you're interested in this project and would like to learn more, feel free to contact us for
+                        additional information.
+                    </div>
+                </div>
+            </section>
+
+            <h1 id="scroll-contact-us">Contact Us</h1>
+            <section class="contact-us">
+                <section class="contact-us-container">
+                    <div class="contact-us-item">
+                        <img src="./img/asset-9.png">
+                        <a target="_blank" href="https://github.com/CCS-G036/ai-waste-man-rec/">GitHub Page</a>
+                    </div>
+                    <div class="contact-us-item-2">
+                        <p>Project Contributors:</p>
+                        <ul class="contributors-list">
+                            <li><i class="fas fa-user-circle"></i> Venkat Deepak J (20211CCS0056)</li>
+                            <li><i class="fas fa-user-circle"></i> Ashish S (20211CCS0057)</li>
+                            <li><i class="fas fa-user-circle"></i> A Yuvaraja (20211CCS0062)</li>
+                            <li><i class="fas fa-user-circle"></i> Siddharth Bej (20211CCS0068)</li>
+                        </ul>
+                    </div>
+
+                </section>
+                <div>
+                    <img src="./img/asset-12.png">
+                    <p style="font-size: 18px">
+                        Feel free to reach us if you have any questions, ideas, discussions, or anything else.
+                    </p>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script src="./js/sidebar.js"></script>
+<script src="./js/faq.js"></script>
+<%- include('./component/home-chart.ejs') %>
+</body>
+
+</html>

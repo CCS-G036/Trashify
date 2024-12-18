@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Type</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <%- include('./component/sidebar.ejs') %>
+    <main class="content">
+        <%- include('./component/header.ejs') %>
+        <div onclick="toggleSidebarClose()">
+
+            <h1>Waste Type</h1>
+            <p class="after-title">
+                You can manage different types of waste by adding, editing, or deleting entries. Each waste type has a
+                unique name, ensuring no duplicates. Additionally, you can update the name and price of any waste type,
+                and you have the ability to add multiple entries at once. </p>
+
+            <section class="counter-container">
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-18.png">
+                        <span class="number">
+                                    ...
+                                </span>
+                        <span class="notes">Total <br> Waste Type</span>
+                    </div>
+
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-20.png">
+                        <span class="number">
+                                  ...
+                                </span>
+                        <span class="notes">Rupees <br> Highest <br> Price</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="waste-type">
+
+                <div class="reset-btn">
+                    <button onclick="createDataWasteType()">Waste Type+</button>
+                    <button onclick="resetFilter()">Reset</button>
+                </div>
+                <section class="waste-type-container">
+                    <table class="waste-type-table">
+                        <thead>
+                        <tr>
+                            <!-- <th>No</th> -->
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="name">
+                                    Name
+                                </div>
+                                <input type="text" placeholder="Search.." name="name"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="price">
+                                    Price
+                                </div>
+                                <div style="display: inline;">
+                                    <input type="number" placeholder="Search.." name="price"
+                                           oninput="filterSorting(undefined, 'same')">
+                                </div>
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="createdAt">
+                                    Date
+                                </div>
+                                <input type="date" placeholder="Search.." name="createdAt"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="deposit_count">
+                                    Deposit Count
+                                </div>
+                                <div style="display: inline;">
+                                    <input type="text" placeholder="Search.." name="deposit_count"
+                                           oninput="filterSorting(undefined, 'same')">
+                                </div>
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="status">
+                                    Status
+                                </div>
+                                <select id="filter-status" name="status" oninput="filterSorting(undefined, 'same')">
+                                    <option value="active">Active</option>
+                                    <option value="deleted">Deleted</option>
+                                </select>
+                            </th>
+                            <th class="th-action">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="data-table-waste-type">
+
+                        </tbody>
+                    </table>
+                </section>
+
+                <div class="pagination">
+                    <span name="first-page" onclick="filterSorting(undefined, 'first')"> First </span>
+                    <span name="previous-page" onclick="filterSorting(undefined, 'prev')"> < </span>
+                    <span name="active-page" class="active"> 1 </span>
+                    <span name="next-page" onclick="filterSorting(undefined, 'next')"> > </span>
+                    <span name="last-page" data-page="" onclick="filterSorting(undefined, 'last')"> Last </span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script src="./js/sidebar.js"></script>
+<script src="./js/utilities.js"></script>
+<script src="./js/waste-type.js"></script>
+</body>
+
+</html>

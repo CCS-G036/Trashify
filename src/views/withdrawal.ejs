@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <%- include('./component/sidebar.ejs') %>
+    <main class="content">
+        <%- include('./component/header.ejs') %>
+        <div onclick="toggleSidebarClose()">
+
+            <h1>Withdrawal</h1>
+            <p class="after-title">
+                Customer withdrawal management is strict, with transaction data being immutable—withdrawal records
+                cannot be edited or deleted. Each withdrawal will be grouped by year, as withdrawals are only allowed in
+                the 12th month and are prohibited in all other months.
+            </p>
+
+            <section class="counter-container">
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-18.png">
+                        <span class="number">
+                                  ...
+                              </span>
+                        <span class="notes">Total <br> Withdrawal</span>
+                    </div>
+
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-6.png">
+                        <span class="number-deposit">
+                                ...
+                              </span>
+                        <span class="notes">Total <br> Amount</span>
+
+                    </div>
+
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-17.png">
+                        <span class="number">
+                                ...
+                              </span>
+                        <span class="notes">Total <br> Years</span>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="waste-type">
+
+                <div class="reset-btn">
+                    <button onclick="createDataWithdrawal()">Withdrawal+</button>
+                    <button onclick="resetFilter()">Reset</button>
+                </div>
+                <section class="waste-type-container">
+                    <table class="waste-type-table">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="createdAt">
+                                    Withdrawal Date
+                                </div>
+                                <input type="date" placeholder="Search.." name="createdAt"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="amount">
+                                    Amount
+                                </div>
+                                <div style="display: inline;">
+                                    <input type="number" placeholder="Search.." name="amount"
+                                           oninput="filterSorting(undefined, 'same')">
+                                </div>
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="customer">
+                                    Customer
+                                </div>
+                                <input type="text" placeholder="Search.." name="customer"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="status">
+                                    Status
+                                </div>
+                                <select id="filter-status" name="status" oninput="filterSorting(undefined, 'same')">
+                                    <option value="active">Active</option>
+                                    <option value="deleted">Deleted</option>
+                                </select>
+                            </th>
+                            <th class="th-action">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="data-table-withdrawal">
+
+                        </tbody>
+                    </table>
+                </section>
+
+                <div class="pagination">
+                    <span name="first-page" onclick="filterSorting(undefined, 'first')"> First </span>
+                    <span name="previous-page" onclick="filterSorting(undefined, 'prev')"> < </span>
+                    <span name="active-page" class="active"> 1 </span>
+                    <span name="next-page" onclick="filterSorting(undefined, 'next')"> > </span>
+                    <span name="last-page" data-page="" onclick="filterSorting(undefined, 'last')"> Last </span>
+                </div>
+            </section>
+
+            <section class="chart">
+                <h3>Withdrawal Chart</h3>
+                <div class="chart-container">
+                    <div class="chart-deposit">
+                        <canvas id="barChart-withdrawal"></canvas>
+                    </div>
+                </div>
+                <p>
+                    Withdrawal data must align accurately with deposit records, as it directly impacts customer rewards.
+                    The data above represents the total deposits for each month throughout the year.
+                </p>
+            </section>
+
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+<script src="./js/sidebar.js"></script>
+<script src="./js/utilities.js"></script>
+<script src="./js/withdrawal.js"></script>
+</body>
+
+</html>

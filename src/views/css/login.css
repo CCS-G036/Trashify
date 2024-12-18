@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-pacifico {
+    font-family: "Pacifico", cursive;
+    font-weight: 600;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.body-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(30deg, #0F1035, #0dc599);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    width: 525px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(12, 10, 10, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box h1 {
+    margin-bottom: 25px;
+    color: #0F1035;
+    transition: font-size 0.3s ease-in-out;
+}
+
+.login-box h1:hover {
+    font-size: 2.75rem;
+}
+
+.login-box > form > div > input[type=text], input[type=password] {
+    border-radius: 10px;
+    padding: 5px;
+    width: 70%;
+    transition: padding, font-size 0.3s ease-in-out;
+    margin: 2px;
+}
+
+.login-box > form > div > input[type=text]:focus, input[type=password]:focus {
+    padding: 0.7rem;
+    font-size: 1.2rem;
+}
+
+
+.login-box > form > div > button[type=submit] {
+    margin-top: 20px;
+    padding: 7px;
+    width: 70%;
+    border-radius: 15px;
+    color: white;
+    background-color: #0F1035;
+    font-weight: 700;
+    font-style: normal;
+    border: 0px;
+    transition: padding, font-size 0.2s ease-in-out;
+}
+
+.login-box > form > div > button[type=submit]:hover, button[type=submit]:focus {
+    background-color: #0EC7E5;
+    padding: 0.7rem;
+    font-size: 1rem;
+}
+
+.login-box > form > div > button[type=submit]:hover {
+    cursor: pointer;
+}
+
+/* Forget passwrod */
+.login-box > div:nth-child(3) {
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.footer img {
+    margin-top: 70px;
+    width: 200px;
+    mix-blend-mode: screen;
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.40rem;
+    }
+
+    .login-box {
+        background: white;
+        width: 18rem;
+    }
+
+    .login-box h1 {
+        margin-bottom: 0.5rem;
+    }
+
+    .login-box > form > div > input[type=text], input[type=password] {
+        padding: 0.25rem;
+        width: 10rem;
+        font-size: 0.6rem;
+    }
+
+    .login-box > form > div > button[type=submit] {
+        width: 10rem;
+        font-size: 0.6rem;
+    }
+
+    .login-box > div:nth-child(3) {
+        margin-top: 0.5rem;
+        font-size: 0.6rem;
+    }
+
+    .footer img {
+        width: 8em;
+    }
+
+    /* Transition */
+    .login-box h1:hover {
+        font-size: 1.75rem;
+    }
+
+    .login-box > form > div > input[type=text]:focus, input[type=password]:focus {
+        padding: 0.7rem;
+        font-size: 0.7rem;
+    }
+
+    .login-box > form > div > input[type=button]:hover, input[type=button]:focus {
+        background-color: #7988CF;
+        padding: 0.7rem;
+        font-size: 0.7rem;
+    }
+}

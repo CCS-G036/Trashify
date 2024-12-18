@@ -1,0 +1,23 @@
+<nav class="sidebar" id="sidebar">
+    <div class="logo">
+        <img src="../img/logo.png" alt="Trashify Logo">
+    </div>
+    <ul class="menu">
+        <% if (full_name) { %>
+            <li><a href="/dashboard"><span>Dashboard</span></a></li>
+            <li><a href="/waste-type"><span>Waste Type</span></a></li>
+            <li><a href="/customer"><span>Customer</span></a></li>
+            <li><a href="/deposit"><span>Deposit</span></a></li>
+            <li><a href="/withdrawal"><span>Withdrawal</span></a></li>
+            <li><a href="#" onclick="logout()"><span>Logout</span></a></li>
+        <% } else { %>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 1, event)">Home</span></a></li>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 2, event)">Data Summary</span></a></li>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 3, event)">Customer</span></a></li>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 4, event)">Deposit</span></a></li>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 5, event)">Waste Type</span></a></li>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 6, event)">FAQ</span></a></li>
+            <li><a href="#"><span onclick="scrolls(this.innerText, 7, event)">Contact Us</span></a></li>
+        <% } %>
+    </ul>
+</nav>

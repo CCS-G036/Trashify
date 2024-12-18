@@ -1,0 +1,199 @@
+<div id="chatbot-wrapper">
+    <button id="chat-toggle-btn" onclick="toggleChatbot()">💬</button>
+    <div id="chat-container" style="display: none;">
+        <div id="chat-header">
+            <span>Chat with us</span>
+            <button id="close-chat-btn" onclick="toggleChatbot()">✖</button>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input">
+            <textarea id="user-message" rows="1" placeholder="Type a message..."></textarea>
+            <button id="send-btn" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Wrapper for chatbot and toggle button */
+    #chatbot-wrapper {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    /* Floating button */
+    #chat-toggle-btn {
+        background-color: #0078d4;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    #chat-toggle-btn:hover {
+        transform: scale(1.1);
+        background-color: #005bb5;
+    }
+
+    /* Chat container */
+    #chat-container {
+        width: 350px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+    }
+
+    /* Header */
+    #chat-header {
+        background-color: #0078d4;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #chat-header button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #chat-header button:hover {
+        opacity: 0.8;
+    }
+
+    /* Messages container */
+    #chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #ffffff;
+    }
+
+    /* Individual messages */
+    .chat-message {
+        max-width: 80%;
+        padding: 10px;
+        border-radius: 15px;
+        line-height: 1.4;
+    }
+
+    .chat-message.user {
+        background-color: #0078d4;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 0;
+    }
+
+    .chat-message.bot {
+        background-color: #f1f1f1;
+        color: #333;
+        align-self: flex-start;
+        border-bottom-left-radius: 0;
+    }
+
+    /* Input area */
+    #chat-input {
+        display: flex;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-top: 1px solid #ccc;
+    }
+
+    #chat-input textarea {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+        resize: none;
+        font-size: 14px;
+    }
+
+    #send-btn {
+        background-color: #0078d4;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #send-btn:hover {
+        background-color: #005bb5;
+    }
+</style>
+
+<script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userMessage = document.getElementById('user-message');
+    const chatContainer = document.getElementById('chat-container');
+
+    function toggleChatbot() {
+        chatContainer.style.display = chatContainer.style.display === 'none' ? 'flex' : 'none';
+    }
+
+    function sendMessage() {
+        const message = userMessage.value.trim();
+        if (!message) return;
+
+        // Append user message
+        appendMessage('User', message, 'user');
+        userMessage.value = '';
+
+        // Simulate chatbot response
+        setTimeout(() => {
+            const botResponse = getBotResponse(message);
+            appendMessage('Bot', botResponse, 'bot');
+        }, 1000);
+    }
+
+    function appendMessage(sender, text, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message', type);
+        messageDiv.innerHTML = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+        if (input.toLowerCase().includes('hello')) {
+            return 'Hi there! How can I assist you today?';
+        } else if (input.toLowerCase().includes('help')) {
+            return 'Of course, let me know what you need assistance with.';
+        } else {
+            return "I'm not sure I understand. Could you please clarify?";
+        }
+    }
+</script>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <%- include('./component/sidebar.ejs') %>
+    <main class="content">
+        <%- include('./component/header.ejs') %>
+        <div onclick="toggleSidebarClose()">
+
+            <h1>Deposit</h1>
+            <p class="after-title">
+                You can manage customer deposits with the ability to create and delete entries only, as transaction data
+                is final and cannot be modified. Each deposit will be organized by month, regardless of the date it was
+                entered, and will be categorized according to the relevant month.
+            </p>
+
+            <section class="counter-container">
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-18.png">
+                        <span class="number-deposit">
+                                    ...
+                                </span>
+                        <span class="notes">Total <br> Deposit</span>
+                    </div>
+
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-6.png">
+                        <span class="number-deposit">
+                                  ...
+                                </span>
+                        <span class="notes">Total <br> Amount</span>
+
+                    </div>
+
+                </div>
+
+                <div class="counter-box">
+                    <div class="counter-item">
+                        <img src="./img/asset-8.png">
+                        <span class="number-deposit">
+                                  ...
+                                </span>
+                        <span class="notes">Kg <br> Total <br> Weight</span>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="waste-type">
+
+                <div class="reset-btn">
+                    <button onclick="createDataDeposit()">Deposit+</button>
+                    <button onclick="resetFilter()">Reset</button>
+                </div>
+                <section class="waste-type-container">
+                    <table class="waste-type-table">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="deposit_date">
+                                    Deposit Date
+                                </div>
+                                <input type="date" placeholder="Search.." name="deposit_date"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="amount">
+                                    Amount
+                                </div>
+                                <div style="display: inline;">
+                                    <input type="number" placeholder="Search.." name="amount"
+                                           oninput="filterSorting(undefined, 'same')">
+                                </div>
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="weight">
+                                    Weight
+                                </div>
+                                <div style="display: inline;">
+                                    <input type="number" placeholder="Search.." name="weight"
+                                           oninput="filterSorting(undefined, 'same')">
+                                </div>
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="waste_type">
+                                    Waste Type
+                                </div>
+                                <input type="text" placeholder="Search.." name="waste_type"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="customer">
+                                    Customer
+                                </div>
+                                <input type="text" placeholder="Search.." name="customer"
+                                       oninput="filterSorting(undefined, 'same')">
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="withdrawal_status">
+                                    Withdrawal
+                                </div>
+                                <select id="filter-status" name="withdrawal_status"
+                                        oninput="filterSorting(undefined, 'same')">
+                                    <option value="">All</option>
+                                    <option value="ready">Ready</option>
+                                    <option value="done">Done</option>
+                                </select>
+                            </th>
+                            <th>
+                                <div onclick="filterSorting(this, 'same')" data-sort=0 name="status">
+                                    Status
+                                </div>
+                                <select id="filter-status" name="status" oninput="filterSorting(undefined, 'same')">
+                                    <option value="active">Active</option>
+                                    <option value="deleted">Deleted</option>
+                                </select>
+                            </th>
+                            <th class="th-action">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="data-table-deposit">
+
+                        </tbody>
+                    </table>
+                </section>
+
+                <div class="pagination">
+                    <span name="first-page" onclick="filterSorting(undefined, 'first')"> First </span>
+                    <span name="previous-page" onclick="filterSorting(undefined, 'prev')"> < </span>
+                    <span name="active-page" class="active"> 1 </span>
+                    <span name="next-page" onclick="filterSorting(undefined, 'next')"> > </span>
+                    <span name="last-page" data-page="" onclick="filterSorting(undefined, 'last')"> Last </span>
+                </div>
+            </section>
+
+            <section class="chart">
+                <div class="pagination">
+                    <select id="chart-year" name="year" oninput="changeYear(this.value)" style="padding:0px 10px;">
+                        <option value="2024">2024</option>
+                    </select>
+                </div>
+                <h3>Total Deposit</h3>
+                <div class="chart-container">
+                    <div class="chart-deposit">
+                        <canvas id="lineChart-deposit"></canvas>
+                    </div>
+                </div>
+                <h3>Customer Attendance</h3>
+                <div class="chart-container">
+                    <div class="chart-customer">
+                        <canvas id="doughChart-deposit"></canvas>
+                    </div>
+                </div>
+                <p>
+                    Customer attendance and deposit activity can be effectively analyzed by reviewing annual data. This
+                    analysis helps identify trends, assess customer participation, and improve waste management
+                    programs.
+                </p>
+            </section>
+
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+<script src="./js/sidebar.js"></script>
+<script src="./js/utilities.js"></script>
+<script src="./js/deposit.js"></script>
+</body>
+
+</html>

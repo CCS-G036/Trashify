@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/utilities.js"></script>
+    <script>
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <%- include('./component/sidebar.ejs') %>
+    <main class="content">
+        <%- include('./component/header.ejs') %>
+        <div onclick="toggleSidebarClose()">
+
+            <h1>Detail Customers</h1>
+
+            <div class="reset-btn" style=" justify-content: space-between;">
+                <button onclick="history.back()">Back</button>
+                <button onclick="editDataCustomer('<%= JSON.stringify(data.result.customerData) %>')">Edit</button>
+            </div>
+
+            <section class="detail-container">
+                <div class="detail-profile">
+                    <img src="../img/asset-21.png">
+                    <h3><%- data.result.customerData.full_name.split(' ').map(str => str[0].toUpperCase() + str.slice(1)).join(' ') %></h3>
+                    <table border="0">
+                        <tr>
+                            <th>Gender</th>
+                            <td>
+                                : <%- data.result.customerData.gender.split(' ').map(str => str[0].toUpperCase() + str.slice(1)).join(' ') %></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>: <%- data.result.customerData.phone_number %></td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>
+                                : <%- data.result.customerData.address.split(' ').map(str => str[0].toUpperCase() + str.slice(1)).join(' ') %></td>
+                        </tr>
+                        <tr>
+                            <th>Join Date</th>
+                            <td>: <%- data.result.customerData.join_date %></td>
+                        </tr>
+                        <tr>
+                            <th>Decision</th>
+                            <td>
+                                : <%- data.result.customerData.withdrawal_decision.split(' ').map(str => str[0].toUpperCase() + str.slice(1)).join(' ') %></td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                : <%- data.result.customerData.status.split(' ').map(str => str[0].toUpperCase() + str.slice(1)).join(' ') %></td>
+                        </tr>
+                        <tr>
+                            <th>Created By</th>
+                            <td>
+                                : <%- data.result.customerData.creator.full_name.split(' ').map(str => str[0].toUpperCase() + str.slice(1)).join(' ') %></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="detail-container-stats">
+                    <div>
+                        <h2>Archived</h2>
+                        <div class="counter-item">
+                                    <span class="number">
+                                        <%= data.result.customerData.balance.deposit %>
+                                    </span>
+                            <span class="notes">Total Amount Deposit</span>
+                        </div>
+                        <div class="counter-item">
+                                    <span class="number">
+                                        <%= data.result.customerData.balance.withdrawal %>
+                                    </span>
+                            <span class="notes">Total Amount Withdrawal</span>
+                        </div>
+                        <div class="counter-item">
+                                    <span class="number">
+                                        <%= data.result.allTotalKg %>
+                                    </span>
+                            <span class="notes">Total Kg Waste Type</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>On Progress</h2>
+                        <div class="counter-item">
+                                    <span class="number">
+                                        <%= data.result.currentDepositAmount %>
+                                    </span>
+                            <span class="notes">Total Amount Deposit</span>
+                        </div>
+                        <div class="counter-item">
+                                    <span class="number">
+                                        <%= data.result.currentWithdrawalAmount %>
+                                    </span>
+                            <span class="notes">Total Amount Withdrawal</span>
+                        </div>
+                        <div class="counter-item">
+                                    <span class="number">
+                                        <%= data.result.currentTotalKg %>
+                                    </span>
+                            <span class="notes">Total Kg Waste Type</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <h1>Last Activities</h1>
+            <section class="detail-container">
+                <div class="activities">
+                    <div>
+                        <img src="../img/asset-6.png">
+                        <table border="0">
+                            <tr>
+                                <th colspan="2">Deposit</th>
+                            </tr>
+                            <% if (data.result.lastDataDeposit) { %>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>: ₹ <%= data.result.lastDataDeposit.amount %> </td>
+                                </tr>
+                                <tr>
+                                    <td>Weight</td>
+                                    <td>: <%= data.result.lastDataDeposit.weight %> Kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Waste Type</td>
+                                    <td>
+                                        : <%= data.result.lastDataDeposit.waste_type.name.replace(/\b\w/g, char => char.toUpperCase()) %></td>
+                                </tr>
+                                <tr>
+                                    <td>Deposit Date</td>
+                                    <td>: <%= data.result.lastDataDeposit.deposit_date %></td>
+                                </tr>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="2">There is no data.</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                    </div>
+
+                    <div>
+                        <img src="../img/asset-13.png">
+                        <table border="0">
+                            <tr>
+                                <th colspan="2">Withdrawal</th>
+                            </tr>
+                            <% if (data.result.lastDataWithdrawal) { %>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>: ₹ <%= data.result.lastDataWithdrawal.amount %></td>
+                                </tr>
+                                <tr>
+                                    <td>Withdrawal Date</td>
+                                    <td>: <%= data.result.lastDataWithdrawal.createdAt %></td>
+                                </tr>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="2">There is no data.</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/profile-customer.js"></script>
+
+</body>
+
+</html>

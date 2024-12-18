@@ -1,0 +1,95 @@
+<script>
+    const dataDeposit = {
+        labels:  <%- JSON.stringify(data.dataHome.listMonth) %>,
+        datasets: [{
+            label: 'Total Deposit',
+            data: <%- JSON.stringify(data.dataHome.listAmountDeposit) %>,
+            fill: true,
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgb(75, 192, 192, 0.2)',
+            borderWidth: 2
+        }]
+    };
+
+    const dataCustomer = {
+        labels: <%- JSON.stringify(data.dataHome.listMonth) %>,
+        datasets: [{
+            label: 'Customers Active',
+            data: <%- JSON.stringify(data.dataHome.listCustomer) %>,
+            backgroundColor: [
+                'rgb(54, 162, 235, 0.8)',
+                'rgb(104, 162, 235, 0.8)',
+                'rgb(154, 162, 235, 0.8)',
+                'rgb(204, 162, 235, 0.8)',
+                'rgb(254, 162, 235, 0.8)',
+                'rgb(54, 162, 235, 0.8)',
+            ],
+            hoverOffset: 2
+        }]
+    };
+
+    const dataWasteType = {
+        labels: <%- JSON.stringify(data.dataHome.listWasteTypeName) %>,
+        datasets: [{
+            label: 'Count Types',
+            data: <%- JSON.stringify(data.dataHome.listWasteTypeCount) %>,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgb(54, 162, 235)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Configuration for the chart
+    const configDeposit = {
+        type: 'line',
+        data: dataDeposit,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: false,
+                        text: 'Month'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: false,
+                        text: 'Amount'
+                    }
+                }
+            }
+        }
+    };
+
+    const configCustomer = {
+        type: 'doughnut',
+        data: dataCustomer,
+    };
+
+    const configWasteType = {
+        type: 'bar',
+        data: dataWasteType,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+
+    // Render the chart
+    const ctxDeposit = document.getElementById('lineChartDeposit').getContext('2d');
+    const ctxCustomer = document.getElementById('lineChartCustomer').getContext('2d');
+    const ctxWasteType = document.getElementById('lineChartWasteType').getContext('2d');
+    new Chart(ctxDeposit, configDeposit);
+    new Chart(ctxCustomer, configCustomer);
+    new Chart(ctxWasteType, configWasteType);
+</script>

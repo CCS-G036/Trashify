@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <%- include('./component/linkrel.ejs') %>
+</head>
+
+<body class="body-login">
+<div class="container">
+    <div class="login-box">
+        <div>
+            <h1 class="font-pacifico">Welcome Back!</h1>
+        </div>
+
+        <form id="loginForm">
+            <!-- <form action="/login" method="POST"> -->
+            <div>
+                <label for="username"></label>
+                <input type="text" placeholder="Username or Email" id="username" name="username" required>
+            </div>
+
+            <div>
+                <label for="password"></label>
+                <input type="password" placeholder="Password" id="password" name="password" required>
+            </div>
+
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <div>
+            <a href="#"
+               style="color: #007BFF; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s ease;">
+                Forget Password?
+            </a>
+        </div>
+
+    </div>
+    <div class="footer">
+        <img src="./img/logo-2.webp" class="logo" alt="Trashify Logo">
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./js/login.js"></script>
+</body>
+</html>

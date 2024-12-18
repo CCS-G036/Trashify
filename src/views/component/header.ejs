@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Header</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header>
+    <!-- Sidebar Toggle Button -->
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+    <!-- User Info Section -->
+    <div class="user-info">
+      <span style="<%= full_name ? 'font-size: 16px; font-weight: 600; color: #333;' : '' %>">
+          <% if (full_name) { %>
+              <%= full_name.replace(/\b\w/g, char => char.toUpperCase()) %>
+          <% } else { %>
+              <!-- Login Button -->
+              <a href="/login"
+                 style="color: #fff; text-decoration: none; background: linear-gradient(90deg, #4CAF50, #2E8BFD);
+                    padding: 10px 20px; border-radius: 25px; font-size: 15px; font-weight: bold;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); display: inline-block; margin-right: 10px;
+                    transition: all 0.3s ease;">
+             Login
+          </a>
+
+              <!-- Register Button -->
+              <a href="#" onclick="showAlert(); return false;"
+                 style="color: #fff; text-decoration: none; background: linear-gradient(90deg, #FF5722, #FF9800);
+                    padding: 10px 20px; border-radius: 25px; font-size: 15px; font-weight: bold;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); display: inline-block; transition: all 0.3s ease;">
+             Register
+          </a>
+          <% } %>
+      </span>
+    </div>
+</header>
+
+<!-- JavaScript Functions -->
+<script>
+    function showAlert() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Access Denied',
+            text: 'This feature is not available for you, only for admin.',
+            confirmButtonColor: '#FF5722'
+        });
+    }
+
+    function toggleSidebar() {
+        // Add your sidebar toggle logic here
+        console.log('Sidebar toggled');
+    }
+</script>
+
+</body>
+</html>
