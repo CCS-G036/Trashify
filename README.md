@@ -1,4 +1,4 @@
-![coding javascript](https://github.com/user-attachments/assets/074becc4-f938-497a-9dca-5dadcaeb27f6)
+![image](https://github.com/user-attachments/assets/07e44b5c-c313-4fe7-adb8-914aec131b5b)
 
 # Waste Management and Recycling Framework Using AI
 
