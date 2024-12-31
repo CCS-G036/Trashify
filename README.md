@@ -89,3 +89,8 @@ npm install
 ```bash
 npm start
  ```   
+## Publication
+
+You can find the related publication for this project at the following link:
+
+[Publication: Next-Gen Waste Management Recycling Framework Leveraging AI](https://ijirt.org/Article?manuscript=171578)
